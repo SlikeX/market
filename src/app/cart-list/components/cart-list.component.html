@@ -1,0 +1,10 @@
+<div *ngIf="cartList.length; else emptyCart">
+  <div *ngFor="let product of cartList; trackBy: trackByNames">
+    <p>{{product.name}}</p>
+    <p>{{product.category}}</p>
+    <p>{{product.price}}</p>
+    <p>{{product.description}}</p>
+    <p>{{product.isAvailable}}</p>
+  </div>
+</div>
+<ng-template #emptyCart>Your cart is empty</ng-template>
