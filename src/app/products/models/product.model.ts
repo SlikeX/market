@@ -1,5 +1,3 @@
-import {ProductCategory} from "../../../first-component/category.enum";
-
 export class ProductModel {
   constructor(public name: string,
               public description: string,
@@ -7,4 +5,10 @@ export class ProductModel {
               public category: ProductCategory,
               public isAvailable: boolean) {
   }
+}
+export enum ProductCategory {
+  Minivan = 'Minivan',
+  Hatchback = 'Hatchback',
+  Coupe = 'Coupe',
+  Sedan = 'Sedan'
 }

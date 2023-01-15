@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from "../product/services/product.service";
-import {ProductModel} from "../product/models/product.model";
+import {ProductService} from "../../services/product.service";
+import {ProductModel} from "../../models/product.model";
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-products',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })

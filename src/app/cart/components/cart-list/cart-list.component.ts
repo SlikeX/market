@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {CartService} from "../services/cart.service";
-import {ProductModel} from "../../product-list/product/models/product.model";
+import {CartService} from "../../services/cart.service";
+import {ProductModel} from "../../../products/models/product.model";
 
 @Component({
-  selector: 'app-cart-list',
+  selector: 'app-cart',
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.scss']
 })
