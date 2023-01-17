@@ -10,8 +10,11 @@
   </mat-card-content>
   <mat-card-actions>
     <button
+      [disabled]="product.isAvailable"
+      (click)="onAddToCart(product)"
       mat-raised-button
       color="primary"
-      class="card-btn">BUY</button>
+      class="card-btn">BUY
+    </button>
   </mat-card-actions>
 </mat-card>

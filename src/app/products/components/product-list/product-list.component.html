@@ -1,6 +1,13 @@
-<div class="card-layout">
-  <ng-container *ngFor="let product of products">
-    <app-product [product]="product"></app-product>
-  </ng-container>
+<div class="wrapper">
+  <h3>Products</h3>
+  <div class="card-layout">
+    <ng-container *ngFor="let product of products">
+      <app-product
+        [product]="product"
+        (buyProduct)="onAddToCart($event)"
+      ></app-product>
+    </ng-container>
+  </div>
 </div>
+
 

@@ -1,3 +1,11 @@
-.card-layout{
+.wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card-layout {
   display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
 }

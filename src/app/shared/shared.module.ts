@@ -1,15 +1,18 @@
-import { NgModule } from '@angular/core';
-import { MaterialUIModule } from './material-ui/material-ui.module';
-
+import {NgModule} from '@angular/core';
+import {MaterialUIModule} from './material-ui/material-ui.module';
+import {HighlightDirective} from './directives/highlight.directive';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HighlightDirective
+  ],
   imports: [
     MaterialUIModule
   ],
   exports: [
-    MaterialUIModule
+    MaterialUIModule,
+    HighlightDirective
   ]
 })
 export class SharedModule { }
