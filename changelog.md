@@ -12,10 +12,18 @@
 
 ### Added
 
-- Remove FirstComponent
 - Changed ProductModel
 - Add cart-item component
 - Implement cart service
 - Add subject for trigger CD in CartListComponent through ProductComponent
 - Convert Product and CartItem components in to "dumb" components
 - Add Material UI library
+
+## 1.0.2
+
+## Added
+
+- Add first component
+- Add needed services and provide them in different ways
+- Add border directives with render2
+
