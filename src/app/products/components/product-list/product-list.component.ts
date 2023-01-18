@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../../services/product.service";
 import {ProductModel} from "../../models/product.model";
 import {CartService} from "../../../cart/services/cart.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-products-list',
@@ -12,7 +11,6 @@ import {Subscription} from "rxjs";
 export class ProductListComponent implements OnInit {
 
   products!: ProductModel[];
-  private cartListSub!: Subscription;
 
   constructor(public productService: ProductService,
               private cartService: CartService) {
@@ -23,6 +21,10 @@ export class ProductListComponent implements OnInit {
   }
 
   onAddToCart(product: ProductModel): void {
-    this.cartService.addToCart(product)
+    try {
+      this.cartService.addToCart(product)
+    } catch (error) {
+      confirm('You already have it in your cart')
+    }
   }
 }

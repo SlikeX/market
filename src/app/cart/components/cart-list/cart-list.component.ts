@@ -10,22 +10,40 @@ import {Subscription} from "rxjs";
 })
 export class CartListComponent implements OnInit {
 
-  cartList!: ProductModel[];
-  private cartListSub!: Subscription;
-  // totalCost = this.cartService.totalCost();
-  totalQuantity = this.cartService.totalQuantity();
+  cartList = this.cartService.cartList;
+  totalCost = 0;
+  totalQuantity = 0;
+  private sub!: Subscription;
 
   constructor(private cartService: CartService) {
   }
 
   ngOnInit(): void {
-    this.cartListSub = this.cartService.cartList$.subscribe(
-      products => this.cartList = products
-    )
+    this.sub = this.cartService.boughtItem$.subscribe(product => {
+      this.cartList = this.cartService.cartList;
+      this.cartService.totalQuantity();
+      this.totalQuantity = this.cartService.totalQuantity();
+      this.totalCost = this.cartService.totalCost();
+    })
   }
 
   trackByNames(index: number, product: ProductModel): number {
     return index
   }
 
+  increaseQuantity(name: string): void {
+    this.cartService.increaseQuantity(name);
+  }
+
+  decreaseQuantity(name: string): void {
+    this.cartService.decreaseQuantity(name);
+  }
+
+  removeProduct(name: string): void {
+    this.cartService.removeProduct(name);
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
 }

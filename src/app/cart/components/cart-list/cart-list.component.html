@@ -1,8 +1,17 @@
-<div *ngIf="true; else emptyCart">
-  <ng-container *ngFor="let product of cartList; trackBy: trackByNames">
-    <app-cart-item [product]="product"></app-cart-item>
-  </ng-container>
-  <!--  <span>Total cost:{{totalCost}}</span>-->
-  <span>Total quantuty:{{totalQuantity}}</span>
+<h1>Cart</h1>
+<div *ngIf="cartList.length; else emptyCart">
+  <div class="cart-list__wrapper">
+    <ng-container *ngFor="let product of cartList; trackBy: trackByNames">
+      <app-cart-item
+        (increase)="increaseQuantity($event)"
+        (decrease)="decreaseQuantity($event)"
+        (remove)="removeProduct($event)"
+        [product]="product"></app-cart-item>
+    </ng-container>
+  </div>
+  <span>Total cost:{{totalCost}}</span>
+  <span>Total quantity:{{totalQuantity}}</span>
 </div>
-<ng-template #emptyCart>Your cart is empty</ng-template>
+<ng-template #emptyCart>
+  <p class="cart-list__empty">Your cart is empty</p>
+</ng-template>

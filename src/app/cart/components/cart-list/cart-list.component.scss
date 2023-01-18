@@ -1,0 +1,10 @@
+.cart-list__wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cart-list__empty {
+  text-align: center;
+}
