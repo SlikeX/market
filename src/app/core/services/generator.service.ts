@@ -1,4 +1,5 @@
 import {getNewID} from "./gen-id.generator";
+import {InjectionToken} from "@angular/core";
 
 export class GeneratorService {
 
@@ -13,3 +14,5 @@ export class GeneratorService {
 
   getNewID = getNewID;
 }
+
+export const generatedString = new InjectionToken<GeneratorService>('randomToken');

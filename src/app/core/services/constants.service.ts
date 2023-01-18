@@ -6,4 +6,4 @@ export const constants = {
   Ver: '1.0',
   API_URL: 'http://taskmanager.epam.com',
 }
-export const CONSTANTS = new InjectionToken<ConstantsModel>('info')
+export const CONSTANTS = new InjectionToken<ConstantsModel>('constants')
