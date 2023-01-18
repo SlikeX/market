@@ -8,3 +8,20 @@
 .cart-list__empty {
   text-align: center;
 }
+
+.cart-list__info {
+  display: flex;
+  max-width: 400px;
+  justify-content: space-evenly;
+  margin: 20px auto 0;
+
+  q
+  &__item {
+    display: block;
+  }
+}
+
+.cart-list__delete {
+  display: block;
+  margin: 20px auto;
+}

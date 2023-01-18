@@ -1,5 +1,5 @@
 <h1>Cart</h1>
-<div *ngIf="cartList.length; else emptyCart">
+<div *ngIf="isCartEmpty(); else emptyCart">
   <div class="cart-list__wrapper">
     <ng-container *ngFor="let product of cartList; trackBy: trackByNames">
       <app-cart-item
@@ -9,8 +9,17 @@
         [product]="product"></app-cart-item>
     </ng-container>
   </div>
-  <span>Total cost:{{totalCost}}</span>
-  <span>Total quantity:{{totalQuantity}}</span>
+  <button
+    (click)="removeAllProducts()"
+    class="cart-list__delete"
+    mat-raised-button
+    color="accent">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <div class="cart-list__info">
+    <span class="cart-list__info__item">Total cost:{{totalCost}}</span>
+    <span class="cart-list__info__item">Total quantity:{{totalQuantity}}</span>
+  </div>
 </div>
 <ng-template #emptyCart>
   <p class="cart-list__empty">Your cart is empty</p>
