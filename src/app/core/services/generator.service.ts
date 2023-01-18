@@ -1,3 +1,5 @@
+import {getNewID} from "./gen-id.generator";
+
 export class GeneratorService {
 
   generate(n: number): string {
@@ -9,4 +11,5 @@ export class GeneratorService {
     return result
   };
 
+  getNewID = getNewID;
 }
