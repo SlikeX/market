@@ -9,10 +9,14 @@ export class CartService {
 
   private boughtItem = new Subject();
   public boughtItem$ = this.boughtItem.asObservable();
-  cartList: ProductModel[] | [] = [];
+  private cartList: ProductModel[] | [] = [];
 
 
   constructor() {
+  }
+
+  getCartList(): ProductModel[] | [] {
+    return this.cartList
   }
 
   totalCost(): number {
@@ -28,6 +32,10 @@ export class CartService {
       0
   }
 
+  isCartEmpty(): boolean {
+    return !!this.cartList.length
+  }
+
   addToCart(product: ProductModel): void {
     const isAlreadyBought = !!this.cartList.filter(item => item.name === product.name).length;
     if (!isAlreadyBought) {
@@ -40,17 +48,28 @@ export class CartService {
   }
 
   increaseQuantity(name: string): void {
-    this.cartList.find(product => product.name === name)!.amoutn!++;
+    const product = this.cartList.find(product => product.name === name)!;
+    product.amoutn!++;
+    const tempCartList = this.cartList.filter(cartProduct => cartProduct.name !== product.name);
+    this.cartList = [...tempCartList, product];
     this.boughtItem.next(name);
   }
 
   decreaseQuantity(name: string): void {
-    this.cartList.find(product => product.name === name)!.amoutn!--;
+    const product = this.cartList.find(product => product.name === name)!;
+    product.amoutn!--;
+    const tempCartList = this.cartList.filter(cartProduct => cartProduct.name !== product.name);
+    this.cartList = [...tempCartList, product];
     this.boughtItem.next(name);
   }
 
   removeProduct(name: string): void {
     this.cartList = this.cartList.filter(product => product.name !== name);
     this.boughtItem.next(name);
+  }
+
+  removeAllProducts(): void {
+    this.cartList = [];
+    this.boughtItem.next('removed');
   }
 }

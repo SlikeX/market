@@ -10,7 +10,7 @@ import {Subscription} from "rxjs";
 })
 export class CartListComponent implements OnInit {
 
-  cartList = this.cartService.cartList;
+  cartList = this.cartService.getCartList();
   totalCost = 0;
   totalQuantity = 0;
   private sub!: Subscription;
@@ -20,8 +20,7 @@ export class CartListComponent implements OnInit {
 
   ngOnInit(): void {
     this.sub = this.cartService.boughtItem$.subscribe(product => {
-      this.cartList = this.cartService.cartList;
-      this.cartService.totalQuantity();
+      this.cartList = this.cartService.getCartList();
       this.totalQuantity = this.cartService.totalQuantity();
       this.totalCost = this.cartService.totalCost();
     })
@@ -39,8 +38,16 @@ export class CartListComponent implements OnInit {
     this.cartService.decreaseQuantity(name);
   }
 
+  isCartEmpty(): boolean {
+    return this.cartService.isCartEmpty()
+  }
+
   removeProduct(name: string): void {
     this.cartService.removeProduct(name);
+  }
+
+  removeAllProducts(): void {
+    this.cartService.removeAllProducts()
   }
 
   ngOnDestroy(): void {
