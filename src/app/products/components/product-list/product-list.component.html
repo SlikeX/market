@@ -1,6 +1,10 @@
 <div class="wrapper">
   <h3>Products</h3>
   <div class="card-layout">
+    <!-- Я бы использовал ng-container в двух случаях
+    1. если надо объединить несколько блоков в один и не надо использовать родительский тег
+    2. если надо применить несколько структурных директив
+    -->
     <ng-container *ngFor="let product of products">
       <app-product
         [product]="product"

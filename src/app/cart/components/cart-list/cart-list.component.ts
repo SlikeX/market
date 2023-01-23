@@ -11,6 +11,8 @@ import {Subscription} from "rxjs";
 export class CartListComponent implements OnInit {
 
   cartList = this.cartService.getCartList();
+  // можно использовать тип Tuple
+  // totals: [cost: number, quantity: number] = [0, 0];
   totalCost = 0;
   totalQuantity = 0;
   private sub!: Subscription;

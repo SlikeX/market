@@ -10,7 +10,7 @@ import {BorderDirective} from './directives/border.directive';
     BorderDirective
   ],
   imports: [
-    MaterialUIModule
+    // MaterialUIModule
   ],
   exports: [
     MaterialUIModule,

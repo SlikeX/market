@@ -9,13 +9,13 @@ export class CartService {
 
   private boughtItem = new Subject();
   public boughtItem$ = this.boughtItem.asObservable();
-  private cartList: ProductModel[] | [] = [];
+  private cartList: ProductModel[] = [];
 
 
   constructor() {
   }
 
-  getCartList(): ProductModel[] | [] {
+  getCartList(): ProductModel[] {
     return this.cartList
   }
 
