@@ -9,9 +9,7 @@ import {BorderDirective} from './directives/border.directive';
     HighlightDirective,
     BorderDirective
   ],
-  imports: [
-    MaterialUIModule
-  ],
+  imports: [],
   exports: [
     MaterialUIModule,
     HighlightDirective,
