@@ -27,3 +27,11 @@
 - Add needed services and provide them in different ways
 - Add border directives with render2
 
+## 1.0.3
+
+## Added
+
+-Apply currency pipe in products and cart components
+-Implement orderBy pipe and apply it in cart component
+-Remove CommonModule and FormsModule everywhere except SharedModule
+
