@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CartService} from "../../services/cart.service";
 import {ProductModel} from "../../../products/models/product.model";
 import {Subscription} from "rxjs";
+import {CartFilterConfig} from "../../models/cart-filter-config";
+import {CartFilterEnum} from "../../models/cart-filter.enum";
 
 @Component({
   selector: 'app-cart-list',
@@ -13,12 +15,17 @@ export class CartListComponent implements OnInit {
   cartList = this.cartService.getCartList();
   totalCost = 0;
   totalQuantity = 0;
+  cartFilterConfig!: CartFilterConfig;
   private sub!: Subscription;
 
   constructor(private cartService: CartService) {
   }
 
   ngOnInit(): void {
+    this.cartFilterConfig = {
+      sortField: CartFilterEnum.Name,
+      isAsc: true
+    };
     this.sub = this.cartService.boughtItem$.subscribe(product => {
       this.cartList = this.cartService.getCartList();
       this.totalQuantity = this.cartService.totalQuantity();

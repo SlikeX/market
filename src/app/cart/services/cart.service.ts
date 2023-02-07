@@ -9,26 +9,26 @@ export class CartService {
 
   private boughtItem = new Subject();
   public boughtItem$ = this.boughtItem.asObservable();
-  private cartList: ProductModel[] | [] = [];
+  private cartList: ProductModel[] = [];
 
 
   constructor() {
   }
 
-  getCartList(): ProductModel[] | [] {
+  getCartList(): ProductModel[] {
     return this.cartList
   }
 
   totalCost(): number {
     return this.cartList.length ?
-      this.cartList.map(product => product.price * product.amoutn!
+      this.cartList.map(product => product.price * product.amount!
       ).reduce((item, accum) => accum + item, 0) :
       0;
   }
 
   totalQuantity(): number {
     return this.cartList.length ?
-      this.cartList.map(product => product.amoutn!).reduce((item, accum) => Number(accum) + Number(item), 0) :
+      this.cartList.map(product => product.amount!).reduce((item, accum) => Number(accum) + Number(item), 0) :
       0
   }
 
@@ -39,7 +39,7 @@ export class CartService {
   addToCart(product: ProductModel): void {
     const isAlreadyBought = !!this.cartList.filter(item => item.name === product.name).length;
     if (!isAlreadyBought) {
-      product.amoutn = 1;
+      product.amount = 1;
       this.cartList = [...this.cartList, product];
       this.boughtItem.next(product);
     } else {
@@ -49,17 +49,13 @@ export class CartService {
 
   increaseQuantity(name: string): void {
     const product = this.cartList.find(product => product.name === name)!;
-    product.amoutn!++;
-    const tempCartList = this.cartList.filter(cartProduct => cartProduct.name !== product.name);
-    this.cartList = [...tempCartList, product];
+    product.amount!++;
     this.boughtItem.next(name);
   }
 
   decreaseQuantity(name: string): void {
     const product = this.cartList.find(product => product.name === name)!;
-    product.amoutn!--;
-    const tempCartList = this.cartList.filter(cartProduct => cartProduct.name !== product.name);
-    this.cartList = [...tempCartList, product];
+    product.amount!--;
     this.boughtItem.next(name);
   }
 

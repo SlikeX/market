@@ -1,13 +1,23 @@
 <h1>Cart</h1>
 <div *ngIf="isCartEmpty(); else emptyCart">
+  <div class="cart-list__filter">
+    <mat-form-field appearance="fill">
+      <mat-label>Select an option</mat-label>
+      <mat-select [(value)]="cartFilterConfig.sortField">
+        <mat-option value="name">Name</mat-option>
+        <mat-option value="amount">Amount</mat-option>
+        <mat-option value="price">Price</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-checkbox [(ngModel)]="cartFilterConfig.isAsc">Ascending</mat-checkbox>
+  </div>
   <div class="cart-list__wrapper">
-    <ng-container *ngFor="let product of cartList; trackBy: trackByNames">
-      <app-cart-item
-        (increase)="increaseQuantity($event)"
-        (decrease)="decreaseQuantity($event)"
-        (remove)="removeProduct($event)"
-        [product]="product"></app-cart-item>
-    </ng-container>
+    <app-cart-item
+      *ngFor="let product of cartList | orderBy:cartFilterConfig.sortField:cartFilterConfig.isAsc; trackBy: trackByNames"
+      (increase)="increaseQuantity($event)"
+      (decrease)="decreaseQuantity($event)"
+      (remove)="removeProduct($event)"
+      [product]="product"></app-cart-item>
   </div>
   <button
     (click)="removeAllProducts()"
@@ -17,7 +27,7 @@
     <mat-icon>delete</mat-icon>
   </button>
   <div class="cart-list__info">
-    <span class="cart-list__info__item">Total cost:{{totalCost}}</span>
+    <span class="cart-list__info__item">Total cost:{{totalCost | currency}}</span>
     <span class="cart-list__info__item">Total quantity:{{totalQuantity}}</span>
   </div>
 </div>
