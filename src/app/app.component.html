@@ -1,6 +1,21 @@
 <div class="wrapper">
   <h1 #appTitle></h1>
-  <app-products-list></app-products-list>
-  <app-cart-list></app-cart-list>
+  <nav class="nav">
+    <ul class="nav__list">
+      <li class="nav__item"
+          routerLink="product-list"
+          routerLinkActive="active">Products
+      </li>
+      <li class="nav__item"
+          routerLink="cart"
+          routerLinkActive="active">Cart
+      </li>
+      <li class="nav__item"
+          routerLink="admin"
+          routerLinkActive="active">Products management
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
 </div>
 
