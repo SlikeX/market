@@ -1,5 +1,5 @@
 import {InjectionToken} from "@angular/core";
-import {ConstantsModel} from "../models/constants.model";
+import {ConstantsModel} from "../../models/constants.model";
 
 export const constants = {
   App: 'TaskManager',

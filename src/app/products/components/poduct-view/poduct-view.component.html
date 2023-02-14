@@ -1,4 +1,4 @@
-<mat-card class="card-wrapper" appHighlight>
+<mat-card class="card-wrapper">
   <mat-card-header>
     <mat-card-title>{{product.name}}</mat-card-title>
     <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
@@ -10,20 +10,11 @@
   </mat-card-content>
   <mat-card-actions>
     <button
-      (click)="onIncrease(product.name)"
+      [disabled]="product.isAvailable"
+      (click)="onAddToCart(product)"
       mat-raised-button
-      color="primary">+
-    </button>
-    <button
-      (click)="onDecrease(product.name)"
-      mat-raised-button
-      color="primary">-
-    </button>
-    <button
-      (click)="onRemove(product.id)"
-      mat-raised-button
-      color="primary">
-      <mat-icon>delete</mat-icon>
+      color="primary"
+      class="card-btn">BUY
     </button>
   </mat-card-actions>
 </mat-card>

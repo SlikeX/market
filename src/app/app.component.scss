@@ -1,0 +1,28 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  .nav__list {
+    display: flex;
+
+    .nav__item {
+      font-size: 20px;
+      list-style: none;
+      margin-right: 30px;
+      cursor: pointer;
+    }
+  }
+
+  .nav__role {
+    display: flex;
+    align-items: baseline;
+
+    .current-role {
+      margin-right: 50px;
+    }
+
+    .toggle-role {
+    }
+  }
+}
+

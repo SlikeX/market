@@ -1,4 +1,6 @@
-<mat-card class="card-wrapper">
+<mat-card
+  [routerLink]="['/product',product.id]"
+  class="card-wrapper">
   <mat-card-header>
     <mat-card-title>{{product.name}}</mat-card-title>
     <mat-card-subtitle>{{product.category}}</mat-card-subtitle>

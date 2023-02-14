@@ -1,0 +1,10 @@
+.nav__list {
+  display: flex;
+
+  .nav__item {
+    font-size: 20px;
+    list-style: none;
+    margin-right: 30px;
+    cursor: pointer;
+  }
+}

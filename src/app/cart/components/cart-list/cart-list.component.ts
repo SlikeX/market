@@ -13,8 +13,8 @@ import {CartFilterEnum} from "../../models/cart-filter.enum";
 export class CartListComponent implements OnInit {
 
   cartList = this.cartService.getCartList();
-  totalCost = 0;
-  totalQuantity = 0;
+  totalCost = this.cartService.totalCost();
+  totalQuantity = this.cartService.totalQuantity();
   cartFilterConfig!: CartFilterConfig;
   private sub!: Subscription;
 
@@ -22,6 +22,7 @@ export class CartListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.cartList);
     this.cartFilterConfig = {
       sortField: CartFilterEnum.Name,
       isAsc: true

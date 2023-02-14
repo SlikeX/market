@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ProductModel} from "../../products/models/product.model";
 import {Subject} from "rxjs";
+import {LocalStorageService} from "../../core/services/local-storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -9,38 +10,50 @@ export class CartService {
 
   private boughtItem = new Subject();
   public boughtItem$ = this.boughtItem.asObservable();
-  private cartList: ProductModel[] = [];
+  private cartList: ProductModel[] = this.getCartList();
 
 
-  constructor() {
+  constructor(private localStorageService: LocalStorageService) {
   }
 
   getCartList(): ProductModel[] {
-    return this.cartList
+    const res = [];
+    for (let i = 0; i < 5; i++) {
+      const item = this.localStorageService.getItem(i.toString());
+      if (item) {
+        res.push(JSON.parse(item))
+      }
+    }
+    return res.length > 0 ? res as ProductModel[] : [];
   }
 
   totalCost(): number {
-    return this.cartList.length ?
-      this.cartList.map(product => product.price * product.amount!
+    const cartList = this.getCartList();
+    return cartList.length ?
+      cartList.map(product => product.price * product.amount!
       ).reduce((item, accum) => accum + item, 0) :
       0;
   }
 
   totalQuantity(): number {
-    return this.cartList.length ?
-      this.cartList.map(product => product.amount!).reduce((item, accum) => Number(accum) + Number(item), 0) :
+    const cartList = this.getCartList();
+    return cartList.length ?
+      cartList.map(product => product.amount!).reduce((item, accum) => Number(accum) + Number(item), 0) :
       0
   }
 
   isCartEmpty(): boolean {
-    return !!this.cartList.length
+    const cartList = this.getCartList();
+    return !!cartList.length
   }
 
   addToCart(product: ProductModel): void {
-    const isAlreadyBought = !!this.cartList.filter(item => item.name === product.name).length;
+    const cartList = this.getCartList();
+    const isAlreadyBought = !!cartList.filter(item => item.name === product.name).length;
+    console.log(isAlreadyBought);
     if (!isAlreadyBought) {
       product.amount = 1;
-      this.cartList = [...this.cartList, product];
+      this.localStorageService.setItem(product.id, JSON.stringify(product))
       this.boughtItem.next(product);
     } else {
       throw new Error('You already have it in your cart')
@@ -48,24 +61,34 @@ export class CartService {
   }
 
   increaseQuantity(name: string): void {
-    const product = this.cartList.find(product => product.name === name)!;
+    const cartList = this.getCartList();
+    const product = cartList.find(product => product.name === name)!;
     product.amount!++;
+    this.localStorageService.updateItem(product);
     this.boughtItem.next(name);
   }
 
   decreaseQuantity(name: string): void {
-    const product = this.cartList.find(product => product.name === name)!;
+    const cartList = this.getCartList();
+    const product = cartList.find(product => product.name === name)!;
+    if (product.amount <= 1) {
+      product.amount!--;
+      this.localStorageService.removeItem(product.id);
+      this.boughtItem.next(name);
+      return
+    }
     product.amount!--;
+    this.localStorageService.updateItem(product);
     this.boughtItem.next(name);
   }
 
-  removeProduct(name: string): void {
-    this.cartList = this.cartList.filter(product => product.name !== name);
-    this.boughtItem.next(name);
+  removeProduct(id: string): void {
+    this.localStorageService.removeItem(id);
+    this.boughtItem.next(id);
   }
 
   removeAllProducts(): void {
-    this.cartList = [];
+    this.localStorageService.removeAllItems();
     this.boughtItem.next('removed');
   }
 }
