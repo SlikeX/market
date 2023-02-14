@@ -5,7 +5,8 @@ export class ProductModel {
               public category: ProductCategory,
               public imgUrl: CarImgURL,
               public isAvailable: boolean,
-              public amount?: number) {
+              public id: string,
+              public amount: number = 0) {
   }
 }
 export enum ProductCategory {

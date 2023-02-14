@@ -18,6 +18,8 @@ export class ProductComponent implements OnInit {
   }
 
   onAddToCart(product: ProductModel): void {
-    this.buy.emit(product)
+    //нормально ли использовать этот метод, чтобы предотвратить навигацию при нажитии на кнопку buy
+    event!.stopPropagation();
+    this.buy.emit(product);
   }
 }

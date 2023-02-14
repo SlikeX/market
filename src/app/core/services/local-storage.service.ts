@@ -1,5 +1,10 @@
-import {InjectionToken} from "@angular/core";
+import {Injectable} from '@angular/core';
+import {ProductModel} from "../../products/models/product.model";
 
+
+@Injectable({
+  providedIn: 'root'
+})
 export class LocalStorageService {
 
   setItem(key: string, value: string): void {
@@ -9,6 +14,17 @@ export class LocalStorageService {
   getItem(key: string): string | null {
     return localStorage.getItem(key);
   }
-}
 
-export const localStorageServiceToken = new InjectionToken<LocalStorageService>('localStorageService');
+  removeItem(key: string): void {
+    localStorage.removeItem(key)
+  }
+
+  updateItem(product: ProductModel): void {
+    localStorage.removeItem(product.id);
+    localStorage.setItem(product.id, JSON.stringify(product))
+  }
+
+  removeAllItems(): void {
+    localStorage.clear();
+  }
+}

@@ -12,7 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FirtsComponent} from './firts/firts.component';
 import {Router} from "@angular/router";
 import {OrdersRoutingModule} from "./orders/orders-routing.module";
-import {ProductManagementRoutingModule} from "./product-management/product-management-routing.module";
+import {ProductManagementModule} from "./product-management/product-management.module";
 
 @NgModule({
   declarations: [
@@ -29,7 +29,7 @@ import {ProductManagementRoutingModule} from "./product-management/product-manag
     CartRoutingModule,
     OrdersRoutingModule,
     ProductsModule,
-    ProductManagementRoutingModule,
+    ProductManagementModule,
     AppRoutingModule,
   ],
   providers: [],

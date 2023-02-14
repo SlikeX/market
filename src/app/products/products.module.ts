@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {ProductComponent, ProductListComponent} from "./components";
 import {SharedModule} from "../shared/shared.module";
 import {PoductViewComponent} from './components/poduct-view/poduct-view.component';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {PoductViewComponent} from './components/poduct-view/poduct-view.componen
     ProductListComponent
   ],
   imports: [
-    SharedModule
+    SharedModule,
+    RouterModule
   ]
 })
 export class ProductsModule { }

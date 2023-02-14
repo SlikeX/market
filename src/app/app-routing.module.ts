@@ -16,6 +16,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/product-list',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/product-list',
   }
 ];
 

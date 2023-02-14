@@ -1,8 +1,7 @@
 import {Component, Inject, OnInit, Optional} from '@angular/core';
-import {constants, CONSTANTS} from "../core/services/constants.service";
-import {generatedString, GeneratorService} from "../core/services/generator.service";
-import {GeneratorFactory} from "../core/services/generator.factory";
-import {LocalStorageService, localStorageServiceToken} from "../core/services/local-storage.service";
+import {constants, CONSTANTS} from "../core/services/unnecessaryServices/constants.service";
+import {generatedString, GeneratorService} from "../core/services/unnecessaryServices/generator.service";
+import {GeneratorFactory} from "../core/services/unnecessaryServices/generator.factory";
 import {ConstantsModel} from "../core/models/constants.model";
 
 @Component({
@@ -15,9 +14,6 @@ import {ConstantsModel} from "../core/models/constants.model";
       provide: generatedString,
       useFactory: GeneratorFactory(5),
       deps: [GeneratorService]
-    },
-    {
-      provide: localStorageServiceToken, useValue: new LocalStorageService()
     }
   ]
 })
@@ -26,7 +22,6 @@ export class FirtsComponent implements OnInit {
   constructor(
     @Optional() @Inject(CONSTANTS) public constants: ConstantsModel,
     @Optional() @Inject(generatedString) public generator: string,
-    @Optional() @Inject(localStorageServiceToken) public localStorageService: LocalStorageService,
     @Optional() public generatorService: GeneratorService,
   ) { }
 

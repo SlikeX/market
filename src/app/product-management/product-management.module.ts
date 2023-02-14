@@ -1,13 +1,17 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
 
-import { ProductManagementRoutingModule } from './product-management-routing.module';
+import {ProductManagementRoutingModule} from './product-management-routing.module';
+import {ProductManagementComponent} from "./product-management.component";
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProductManagementComponent
+  ],
   imports: [
-    CommonModule,
+    ProductManagementRoutingModule
+  ],
+  exports: [
     ProductManagementRoutingModule
   ]
 })

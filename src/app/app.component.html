@@ -15,6 +15,15 @@
           routerLinkActive="active">Products management
       </li>
     </ul>
+    <div class="nav__role">
+      <p class="current-role">{{role}}</p>
+      <button
+        (click)="changeRole()"
+        mat-raised-button
+        color="primary"
+        class="toggle-role">Change role
+      </button>
+    </div>
   </nav>
   <router-outlet></router-outlet>
 </div>

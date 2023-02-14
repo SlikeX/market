@@ -1,4 +1,7 @@
 .nav {
+  display: flex;
+  justify-content: space-between;
+
   .nav__list {
     display: flex;
 
@@ -9,8 +12,17 @@
       cursor: pointer;
     }
   }
+
+  .nav__role {
+    display: flex;
+    align-items: baseline;
+
+    .current-role {
+      margin-right: 50px;
+    }
+
+    .toggle-role {
+    }
+  }
 }
 
-.active {
-  border-bottom: 2px solid red;
-}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-product-management',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductManagementComponent implements OnInit {
 
-  constructor() { }
+  routeInfo!: string;
+
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
   }
