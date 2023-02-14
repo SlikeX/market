@@ -35,3 +35,11 @@
 -Implement orderBy pipe and apply it in cart component
 -Remove CommonModule and FormsModule everywhere except SharedModule
 
+## 1.0.4
+
+## Added
+
+-Implement routing w/ different modules
+-Add all guards according task
+-Implement ProductManagement component(adminka)
+-Implement local storage for cart list
