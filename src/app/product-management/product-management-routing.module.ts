@@ -10,6 +10,7 @@ const routes: Routes = [
   {
     path: 'admin',
     canActivate: [IsAdminGuard],
+    // немного необычно выглядит, когда родительский и дочерний компоненты - это один и тот же компонент
     component: ProductManagementComponent,
     children: [
       {path: 'product', component: ProductManagementComponent},
