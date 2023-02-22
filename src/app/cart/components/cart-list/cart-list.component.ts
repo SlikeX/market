@@ -12,6 +12,9 @@ import {CartFilterEnum} from "../../models/cart-filter.enum";
 })
 export class CartListComponent implements OnInit {
 
+  // немного необычно видеть инициализацию полей в этом месте с помощью сервиса
+  // может я ошибаюсь, но мне кажеться, что это равноценно инийиализации внутри конструктора
+  // я бы перенес эту инициализацию в ngOnInit()
   cartList = this.cartService.getCartList();
   totalCost = this.cartService.totalCost();
   totalQuantity = this.cartService.totalQuantity();
